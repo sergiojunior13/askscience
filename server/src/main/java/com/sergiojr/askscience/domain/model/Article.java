@@ -31,6 +31,10 @@ public class Article {
     return pdf;
   }
 
+  public void setPdf(byte[] pdf) {
+    this.pdf = pdf;
+  }
+
   public String getAbstract() {
     return abstrct;
   }

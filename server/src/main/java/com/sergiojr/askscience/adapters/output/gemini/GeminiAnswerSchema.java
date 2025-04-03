@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class GeminiAnswerSchema {
 
-  static final String summaryDescriptionForAI = "AI-generated summary based on the articles. If just a text section from the article helps answer the question, use it. When using information from an article into a paragraph, reference the article like this, after the paragraph: [0] // Here, is the index of article from references prop";
+  static final String summaryDescriptionForAI = "AI-generated summary based on the articles. If just a text section from the article helps answer the question, use it. When using information from an article into a paragraph, reference the article like this, after the paragraph: {{url}} // Here, url is the url of article referenciated";
 
   public static Schema build() {
     return build(Optional.of(summaryDescriptionForAI));

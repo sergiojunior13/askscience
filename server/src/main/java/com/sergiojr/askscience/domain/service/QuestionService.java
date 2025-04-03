@@ -18,6 +18,7 @@ public class QuestionService {
   }
 
   public Answer execute(Question question) {
+    long startTimeTotal = System.currentTimeMillis();
     String instrucions = articlesRepository.getPromptInstructionsForAI();
 
     Question improvedQuestion = aiRepository.improveQuestion(question, instrucions);
@@ -34,8 +35,13 @@ public class QuestionService {
 
     System.out.println("Found " + articles.size() + " articles");
 
-    long endTime = System.currentTimeMillis();
-    System.out.printf("[%s] Finished fetching articles data. Time taken: %dms\n", endTime, (endTime - startTime));
-    return aiRepository.answerQuestion(question, reorderedArticles);
+    Answer answer = aiRepository.answerQuestion(question, reorderedArticles);
+
+    // Tempo total
+    long endTimeTotal = System.currentTimeMillis();
+    System.out.printf("[%s] Finished execution. Total time taken: %dms\n",
+        endTimeTotal, (endTimeTotal - startTimeTotal));
+
+    return answer;
   }
 }

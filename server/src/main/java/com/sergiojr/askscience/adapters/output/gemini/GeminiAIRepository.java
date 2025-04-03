@@ -69,6 +69,10 @@ public class GeminiAIRepository implements AIRepository {
         if (referenceArticle == null)
           return null;
 
+        // This line is to remove the hole references pdf's from HTTP response.
+        // Otherwise the response would be just so big.
+        referenceArticle.setPdf(null);
+
         return new Answer.Reference(reference.excerpt(), referenceArticle);
       }).filter(reference -> reference != null).toList();
 
