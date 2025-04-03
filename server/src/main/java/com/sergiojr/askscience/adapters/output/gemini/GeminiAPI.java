@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sergiojr.askscience.domain.model.Article;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,12 +16,8 @@ import java.util.List;
 
 @Service
 public class GeminiAPI {
-  private static final String API_KEY;
 
-  static {
-    Dotenv dotenv = Dotenv.load();
-    API_KEY = dotenv.get("GEMINI_API_KEY");
-  }
+  private static final String API_KEY = System.getenv("GEMINI_API_KEY");
 
   private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
       + API_KEY;
