@@ -7,9 +7,9 @@ import java.util.Optional;
 public class GeminiAnswerSchema {
 
   static final String summaryDescriptionForAI = """
-      This field contains an AI-generated summary/direct answer derived from the source material.
+      Summary answer derived from the source material to the user question.
 
-      The summary should be synthesized and presented in **natural, readable language**, not as a simple extraction or close paraphrase of the source text.
+      The summary should be synthesized and presented in **natural, readable language**, not as a simple extraction or close paraphrase of the source text, and should answer the user question.
 
       Information sourced from an article must be referenced immediately after the relevant text using the exact format: `{{ARTICLE_URL}}`. Ex: `{{https://url-example.com}}`
               """;
