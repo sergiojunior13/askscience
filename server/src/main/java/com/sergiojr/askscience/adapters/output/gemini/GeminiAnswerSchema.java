@@ -6,7 +6,13 @@ import java.util.Optional;
 
 public class GeminiAnswerSchema {
 
-  static final String summaryDescriptionForAI = "AI-generated summary based on the articles. If just a text section from the article helps answer the question, use it. When using information from an article into a paragraph, reference the article like this, after the paragraph: {{url}} // Here, url is the url of article referenciated";
+  static final String summaryDescriptionForAI = """
+      This field contains an AI-generated summary/direct answer derived from the source material.
+
+      The summary should be synthesized and presented in **natural, readable language**, not as a simple extraction or close paraphrase of the source text.
+
+      Information sourced from an article must be referenced immediately after the relevant text using the exact format: `{{ARTICLE_URL}}`. Ex: `{{https://url-example.com}}`
+              """;
 
   public static Schema build() {
     return build(Optional.of(summaryDescriptionForAI));
