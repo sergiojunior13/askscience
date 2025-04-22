@@ -11,7 +11,7 @@ public class GeminiAnswerSchema {
 
       The summary should be synthesized and presented in **natural, readable language**, not as a simple extraction or close paraphrase of the source text, and should answer the user question.
 
-      Information sourced from an article must be referenced immediately after the relevant text using the exact format: `{{ARTICLE_URL}}`. Ex: `{{https://url-example.com}}`
+      Information sourced from an article must be referenced immediately after the relevant text using the exact format: `{{ARTICLE_URL}}`. Ex: `Some relevant text section. {{https://url-example.com}}`
               """;
 
   public static Schema build() {

@@ -21,17 +21,16 @@ public class GeminiAIRepository implements AIRepository {
     String prompt = String.format(
         """
             Analyze the following user question and suggest an improved scientific search query. Please:
-            1. Extract the key scientific concepts from the question
-            2. Create a comprehensive query that captures all relevant aspects
-            3. Use boolean operators (AND, OR) and quotation marks effectively
-            4. Provide only the new query, nothing else
-            5. Provide the query in English for better results
+            - Fix all grammar erros
+            - Improve the question
+            - Provide only the new query, nothing else
+            - Provide the query in English for better results
 
             User question: '%s'
 
             Example:
-            - Question: "What is artificial intelligence?"
-            - Expected response: '"artificial intelligence" AND (overview OR review OR introduction OR fundamentals) AND ("machine learning" OR "neural networks" OR "deep learning" OR algorithms) AND (history OR development OR applications)'
+            - Question: "what is ai?"
+            - Expected response: "artificial intelligence concept"
             """,
         rawQuestion.getContent());
 
@@ -115,7 +114,9 @@ public class GeminiAIRepository implements AIRepository {
     int[] scores = extractScores(scoresResponse);
 
     for (int i = 0; i < scores.length; i++) {
-      scoredArticles.add(new ScoredArticle(articles.get(i), scores[i]));
+      if (scores[i] >= 5) {
+        scoredArticles.add(new ScoredArticle(articles.get(i), scores[i]));
+      }
     }
 
     scoredArticles.sort(Comparator.comparing(ScoredArticle::score).reversed());
